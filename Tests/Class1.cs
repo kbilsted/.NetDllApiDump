@@ -15,7 +15,7 @@ namespace Tests
 
 			var dump = dumper.Dump(typeof(MustFindClass));
 
-			Assert.True(dump.Replace("\r", "").Contains(@"
+			Assert.True(dump.Contains(@"
 *Tests.MustFindClass*
 M: String MustFindMethod1(String x, Tests.Class1 c)
 M: String MustFindGenericMethod(String x, T c)
@@ -27,7 +27,8 @@ M: Int32 GetHashCode()
 M: Type GetType()
 C: .ctor()
 E: Int32 MustFindEvent(Int32 i)
-"));
+F: Func`2[System.Int32,System.Int32] MustFindField
+".Replace("\r","")));
 		}
 
 
@@ -86,7 +87,7 @@ M: Type GetType()
 C: .ctor(Object object, IntPtr method)
 P: Reflection.MethodInfo Method
 P: Object Target
-"));
+".Replace("\r","")));
 		}
 	}
 
@@ -100,6 +101,8 @@ P: Object Target
 				return null;
 			}
 		}
+
+		public Func<int, int> MustFindField= x => 43;
 
 		public delegate int MustFindDelegate(int i);
 

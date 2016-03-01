@@ -14,28 +14,25 @@ A suggested work flow
 
 ## 2. Output
 
-a class like
+a class like in an assembly `A.dll`
 
 	public class MustFindClass
 	{
+		public Func<int, int> MustFindField= x => 43;
 		public delegate int MustFindDelegate(int i);
-
 		public event  MustFindDelegate MustFindEvent;
-
-		public string MustFindMethod1(string x, Class1 c)
-		{
+		
+		public string MustFindMethod1(string x, Class1 c) {
 			return null;
 		}
 
-		public string MustFindGenericMethod<T>(string x, T c)
-		{
+		public string MustFindGenericMethod<T>(string x, T c) {
 			return null;
 		}
 	}
 
 	
-results in the output
-	
+Results in the output using `DotNetDllApiDump.exe --filter System A.dll`:
 
 	*Tests.MustFindClass*
 	M: String MustFindMethod1(String x, Tests.Class1 c)
@@ -48,6 +45,7 @@ results in the output
 	M: Type GetType()
 	C: .ctor()
 	E: Int32 MustFindEvent(Int32 i)
+	F: Func`2[System.Int32,System.Int32] MustFindField
 
 	
 Notice the output has been created with the argument `--filter System` to shorten the type names.
