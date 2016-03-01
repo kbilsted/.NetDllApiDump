@@ -52,4 +52,7 @@ results in the output
 	
 Notice the output has been created with the argument `--filter System` to shorten the type names.
 	
-	
+## 3. Download
+
+Either pull and compile or download from https://github.com/kbilsted/.NetDllApiDump/releases
+
